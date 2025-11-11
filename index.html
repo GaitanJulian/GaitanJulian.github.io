@@ -1,306 +1,782 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Julian Gaitan GameDev</title>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, user-scalable=no"
-    />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <link rel="icon" href="images/profile.png" type="image/x-icon">
-  </head>
-  <body class="is-preload">
-    <!-- Wrapper -->
-    <div id="wrapper">
-      <!-- Main -->
-      <div id="main">
-        <div class="inner">
-          <!-- Header -->
-          <header id="header">
-            <ul class="icons">
-              <li>
-                <a
-                  href="https://www.linkedin.com/in/gaitanjulian-gamedeveloper/"
-                  target="_blank"
-                  style="border-bottom: none"
-                  ><img
-                    style="width: 24px; height: 24px"
-                    src="./images/linkedin-logo.svg"
-                /></a>
-              </li>
-              <li>
-                <a
-                  href="https://github.com/GaitanJulian"
-                  target="_blank"
-                  style="border-bottom: none"
-                  ><img
-                    style="width: 24px; height: 24px"
-                    src="./images/github-logo.svg"
-                /></a>
-              </li>
-              <li>
-                <a
-                  href="https://gaitanjulian.itch.io"
-                  target="_blank"
-                  style="border-bottom: none"
-                  ><img
-                    style="width: 24px; height: 24px"
-                    src="./images/itch-io-svgrepo-com.svg"
-                /></a>
-              </li>
-            </ul>
-          </header>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Julian Gaitan | Developer & Game Dev</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="images/profile.png" type="image/x-icon">
+  <style>
+    :root {
+      --bg: #020817;
+      --bg-soft: #0b1020;
+      --bg-softer: #111827;
+      --accent: #f97316;
+      --accent-soft: rgba(249,115,22,0.18);
+      --accent-soft2: rgba(249,115,22,0.06);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #1f2937;
+      --radius-xl: 24px;
+      --radius: 16px;
+      --shadow-soft: 0 18px 60px rgba(0,0,0,0.55);
+      --transition: 0.25s ease;
+      --font: system-ui, -apple-system, BlinkMacSystemFont, -apple-system, "SF Pro Text", sans-serif;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background:
+        radial-gradient(circle at top, rgba(249,115,22,0.06), transparent 55%),
+        radial-gradient(circle at bottom, rgba(56,189,248,0.04), transparent 55%),
+        var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding: 24px;
+    }
+    .page {
+      max-width: 1160px;
+      margin: 0 auto 40px auto;
+    }
+    header {
+      margin-bottom: 32px;
+    }
+    .top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .brand-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 15px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(249,115,22,0.4);
+      color: var(--accent);
+      font-size: 11px;
+      gap: 8px;
+    }
+    .brand-pill span:last-child {
+      color: var(--muted);
+    }
+    .social {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      transition: var(--transition);
+    }
+    .social a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: var(--accent-soft2);
+    }
+    .hero {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) 190px;
+      gap: 22px;
+      align-items: center;
+      padding: 18px 20px;
+      border-radius: var(--radius-xl);
+      background:
+        radial-gradient(circle at top left, rgba(249,115,22,0.08), transparent),
+        var(--bg-soft);
+      border: 1px solid rgba(148,163,253,0.08);
+      box-shadow: var(--shadow-soft);
+    }
+    .hero h1 {
+      font-size: 32px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      margin-bottom: 4px;
+    }
+    .hero-subtitle {
+      font-size: 13px;
+      color: var(--accent);
+      margin-bottom: 10px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+    .hero p {
+      font-size: 13px;
+      color: var(--muted);
+      max-width: 620px;
+      margin-bottom: 12px;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 12px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      text-decoration: none;
+      cursor: pointer;
+      gap: 6px;
+      transition: var(--transition);
+      font-size: 11px;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #111827;
+      font-weight: 500;
+      box-shadow: 0 12px 26px rgba(249,115,22,0.35);
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 40px rgba(249,115,22,0.5);
+    }
+    .btn-ghost {
+      border-color: var(--border);
+      color: var(--muted);
+      background: transparent;
+    }
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft2);
+    }
+    .hero-photo-wrap {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .hero-photo {
+      width: 190px;
+      height: 190px;
+      border-radius: 26px;
+      object-fit: cover;
+      border: 2px solid rgba(249,115,22,0.35);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.75);
+      background: #020817;
+    }
 
-          <!-- Banner -->
-  <section id="banner">
-  <div class="content">
+    /* WebGL section */
+    .webgl-section {
+      margin-top: 26px;
+      padding: 16px 18px 14px 18px;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border);
+      background:
+        radial-gradient(circle at top right, rgba(249,115,22,0.08), transparent),
+        var(--bg-soft);
+    }
+    .webgl-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 18px;
+    }
+    .webgl-title {
+      font-size: 15px;
+      font-weight: 500;
+    }
+    .webgl-text {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+      max-width: 640px;
+    }
+    .webgl-toggle {
+      padding: 7px 13px;
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      background: transparent;
+      color: var(--accent);
+      font-size: 11px;
+      cursor: pointer;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+    .webgl-toggle:hover {
+      background: var(--accent);
+      color: #020817;
+    }
+    .webgl-frame-wrapper {
+      margin-top: 10px;
+      display: none;
+    }
+    .webgl-frame {
+      width: 100%;
+      height: 420px;
+      border: none;
+      border-radius: 18px;
+      background: #020817;
+    }
+
+    /* Projects toggle */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin: 26px 4px 10px 4px;
+    }
+    .section-header h2 {
+      font-size: 17px;
+      font-weight: 500;
+    }
+    .section-subtitle {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .toggle-group {
+      display: inline-flex;
+      padding: 3px;
+      border-radius: 999px;
+      background: #020817;
+      border: 1px solid var(--border);
+      gap: 3px;
+    }
+    .toggle-btn {
+      border: none;
+      padding: 5px 14px;
+      border-radius: 999px;
+      font-size: 10px;
+      color: var(--muted);
+      background: transparent;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .toggle-btn.active {
+      background: var(--accent);
+      color: #020817;
+      font-weight: 500;
+    }
+
+    /* Projects grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-top: 6px;
+    }
+    .card {
+      padding: 12px 12px 10px 12px;
+      border-radius: var(--radius);
+      background: linear-gradient(to bottom, rgba(15,23,42,0.98), rgba(9,9,11,1));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at top right, rgba(249,115,22,0.04), transparent),
+        radial-gradient(circle at bottom left, rgba(56,189,248,0.03), transparent);
+      opacity: 0;
+      transition: var(--transition);
+      pointer-events: none;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(249,115,22,0.65);
+      box-shadow: 0 22px 70px rgba(0,0,0,0.9);
+    }
+    .card:hover::before {
+      opacity: 1;
+    }
+    .card-thumb {
+      width: 100%;
+      border-radius: 12px;
+      object-fit: cover;
+      height: 140px;
+      background: #020817;
+      margin-bottom: 5px;
+    }
+    .card-title {
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .card-role {
+      font-size: 10px;
+      color: var(--muted);
+    }
+    .card-desc {
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .skills {
+      margin-top: 3px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+    .skill-pill {
+      padding: 3px 7px;
+      border-radius: 999px;
+      font-size: 9px;
+      color: var(--accent);
+      background: rgba(8,10,20,1);
+      border: 1px solid rgba(249,115,22,0.4);
+    }
+    .card-links {
+      margin-top: 5px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-size: 9px;
+    }
+    .card-links a {
+      padding: 3px 7px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      color: var(--accent);
+      text-decoration: none;
+      transition: var(--transition);
+      background: transparent;
+    }
+    .card-links a:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft2);
+    }
+
+    /* About */
+    .about {
+      margin: 24px 4px 0 4px;
+      padding: 16px 16px 14px 16px;
+      border-radius: var(--radius-xl);
+      background:
+        radial-gradient(circle at top, rgba(249,115,22,0.06), transparent),
+        var(--bg-soft);
+      border: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 170px minmax(0, 1.9fr);
+      gap: 18px;
+      align-items: center;
+    }
+    .about img {
+      width: 170px;
+      height: 170px;
+      border-radius: 22px;
+      object-fit: cover;
+      border: 1px solid rgba(249,115,22,0.34);
+      box-shadow: 0 14px 40px rgba(0,0,0,0.9);
+    }
+    .about h3 {
+      font-size: 15px;
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+    .about p {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .about-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 9px;
+      color: var(--muted);
+      padding-left: 4px;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 18px;
+      }
+      .hero {
+        grid-template-columns: minmax(0,1fr);
+      }
+      .hero-photo-wrap {
+        justify-content: flex-start;
+      }
+      .hero-photo {
+        width: 150px;
+        height: 150px;
+      }
+      .about {
+        grid-template-columns: minmax(0,1fr);
+      }
+      .about img {
+        width: 150px;
+        height: 150px;
+      }
+      .webgl-frame {
+        height: 320px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
     <header>
-      <h1>Hi, I'm Julian Gaitan</h1>
-      <p>Game Developer & Computer Scientist</p>
-      </header>
-      <p>
-        As a game developer and computer scientist, I excel in the realms of programming and game design. My journey involves coding and architecting interactive and engaging gaming experiences. From crafting intricate gameplay mechanics to designing captivating game worlds, my focus on programming and game design is unwavering. I also have a knack for shaders, using them to create visually stunning and immersive environments.
-        Explore below to delve into the exciting projects I've developed, showcasing my proficiency in game development.
-      </p>
-              <ul class="actions">
-                <li>
-                  <a
-                    class="button big"
-                    id="projects-button"
-                    onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })"
-                    >Projects</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="https://gaitanjulian.itch.io"
-                    target="_blank"
-                    class="button"
-                    >Itch.io</a
-                  >
-                </li>
-              </ul>
-            </div>
-            <span class="image object">
-              <img src="images/julianGaitan.jpg" alt="" />
-            </span>
-          </section>
-
-          <!-- Section -->
-          <section id="projects">
-            <header class="major">
-              <h2>Projects</h2>
-            </header>
-            <div class="posts">
-              <article>
-                <a href="#" class="image">
-                    <img src="images/interactivePortfolio.png" alt="Interactive Portfolio">
-                </a>
-                <h3>Interactive Portfolio [Work in Progress]</h3>
-                <p>Explore an interactive showcase of my work and identity. Featuring an Active Ragdoll for immersive character control. This project is still in work and will keep adding features.</p>
-                <ul class="actions">
-                    <li>
-                        <a href="https://gaitanjulian.itch.io/interactive-portfolio-prototype" class="button">Play on Itch.io</a>
-                    </li>
-                    <li>
-                        <a href="https://github.com/GaitanJulian/interactivePortfolio/tree/main" class="button">GitHub</a>
-                    </li>
-                </ul>
-            </article>
-              <article>
-                <a href="https://joulesp.itch.io/boot-camp-brawlers" target="_blank" class="image">
-                  <img src="images/bootcampBrawlers.png" alt="brawlsers">
-                </a>
-                <h3>Bootcamp Brawlers</h3>
-                <p>Experience the ultimate party game! Up to 4 players can dive into a variety of quick and fun minigames. Get ready for laughter, competition, and endless multiplayer excitement!</p>
-                <ul class="actions">
-                  <li>
-                    <a href="https://joulesp.itch.io/boot-camp-brawlers" target="_blank" class="button">Play on Itch.io</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/GaitanJulian/BootCampBrawlersCodeSamples/tree/main" target="_blank" class="button">GitHub</a>
-                  </li>
-                </ul>
-              </article> 
-              <article>
-                <a href="https://damamapi.itch.io/life-by-candlelight" target="_blank" class="image">
-                  <img src="images/lifebycandleligiht.png" alt="Candle">
-                </a>
-                <h3>Life by Candlelight</h3>
-                <p>Survive the shadows in this first-person horror game. Armed with only a flickering candle, explore the haunted mansion, unravel its secrets, and find an escape before the light fades away.</p>
-                <ul class="actions">
-                  <li>
-                    <a href="https://damamapi.itch.io/life-by-candlelight" target="_blank" class="button">Play on Itch.io</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/GaitanJulian/UnityIVSecondJam" target="_blank" class="button">GitHub</a>
-                  </li>
-                </ul>
-              </article>              
-              <article>
-                <a href="https://pi6g.itch.io/xenofurious-sabotage" target="_blank" class="image">
-                  <img src="images/xenofurious.png" alt="xenofurious">
-                </a>
-                <h3>Xenofurious Sabotage</h3>
-                <p>In this first person shooter, speed is your key to success! As you land headshots while swiftly moving through the game world, you'll accumulate Fury. The higher your Fury level, the more damage you'll unleash.</p>
-                <ul class="actions">
-                  <li>
-                    <a href="https://pi6g.itch.io/xenofurious-sabotage" target="_blank" class="button">Play on Itch.io</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/pi6G/XenofuriousSabotage" target="_blank" class="button">GitHub</a>
-                  </li>
-                </ul>
-              </article>   
-              <article>
-                <a href="https://gaitanjulian.itch.io/nanoescape" target="_blank" class="image">
-                  <img src="images/nanoescape.png" alt="nanoescape">
-                </a>
-                <h3>NanoEscape</h3>
-                <p>Navigate a puzzling journey in this platformer! Shrink down and maneuver through the laboratory, solving puzzles to return to normal size.<br /><br /></p>
-                <ul class="actions">
-                  <li>
-                    <a href="https://gaitanjulian.itch.io/nanoescape" target="_blank" class="button">Play on Itch.io</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/ZenSeit/FirstJam" target="_blank" class="button">GitHub</a>
-                  </li>
-                </ul>
-              </article> 
-              <article>
-                <a href="https://gaitanjulian.itch.io/runes-quest" target="_blank" class="image">
-                  <img src="images/runes.png" alt="runes quest">
-                </a>
-                <h3>Runes Quest</h3>
-                <p>Embark on a magical adventure as a skilled magician on a quest to save the kingdom. Your mission is to aid the hero in defeating menacing monsters. Unleash your mystical powers by matching two runes of the same type in this captivating card game. Can you wield your magic to ensure victory and restore peace to the realm?<br /><br /></p>
-                <ul class="actions">
-                  <li>
-                    <a href="https://gaitanjulian.itch.io/runes-quest" target="_blank" class="button">Play on Itch.io</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/GaitanJulian/CardGame" target="_blank" class="button">GitHub</a>
-                  </li>
-                </ul>
-              </article>
-              <article>
-                <a href="https://gaitanjulian.itch.io/dimensional-dream" target="_blank" class="image">
-                  <img src="images/dream.png" alt="dimensional dream">
-                </a>
-                <h3>Dimensional Dream</h3>
-                <p>Embark on an otherworldly journey as you wake up in an unfamiliar realm. In this top-down slasher, armed with a mighty sword, navigate through the unknown, battling enemies to find your way back home. Explore the mysteries of this new world and unleash your slashing skills to conquer challenges and return to familiar grounds.</p>
-                <ul class="actions">
-                  <li>
-                    <a href="https://gaitanjulian.itch.io/dimensional-dream" target="_blank" class="button">Play on Itch.io</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/GaitanJulian/Kenney2023" target="_blank" class="button">GitHub</a>
-                  </li>
-                </ul>
-              </article>  
-            </div>
-          </section>
-
-          <section id="about">
-            <header class="major">
-              <h2>About</h2>
-            </header>
-            <p>
-              <span class="image left"
-                ><img
-                  src="images/profile.png"
-                  alt="Julian Gaitan profile pic" /></span
-              >My journey into the world of computer science officially began in 2021 when I started my degree. However, my true passion for video games and game development has been a driving force in my life since as early as 2020. Delving into the realms of coding and Unity, I've actively honed my skills and participated in various interdisciplinary projects, both independently and within teams.
-              <br /><br />
-              My dedication led me to engage in renowned events such as the "Kenney's Jam" and the "Global Game Jam," where I thrived in the fast-paced and creative environments. Additionally, I successfully completed a Game Development Bootcamp with Generation, winning a scholarship amidst a competitive pool of over 2000 participants.
-              <br /><br />
-              Proficient in Unity and well-versed in C#, I bring a solid foundation in game development. My experiences in game jams and bootcamps have equipped me with a diverse skill set and a deep passion for turning ideas into captivating interactive experiences. Now, I am eagerly seeking opportunities in the game industry to kickstart my career in the area that I love the most.
-            </p>
-            <ul class="actions">
-              <li>
-                <a
-                  href="https://www.linkedin.com/in/gaitanjulian-gamedeveloper/"
-                  target="_blank"
-                  class="button"
-                  >LinkedIn</a
-                >
-              </li>
-              <li>
-                <a
-                  href="https://github.com/GaitanJulian"
-                  target="_blank"
-                  class="button"
-                  >Git Hub</a
-                >
-              </li>
-              <li>
-                <a
-                  href="https://gaitanjulian.itch.io"
-                  target="_blank"
-                  class="button"
-                  >Itch.io</a
-                >
-              </li>
-            </ul>
-          </section>
+      <div class="top-row">
+        <div class="brand-pill">
+          <span>Developer first</span>
+          <span>Game dev by passion</span>
+        </div>
+        <div class="social">
+          <a href="https://github.com/GaitanJulian" target="_blank" aria-label="GitHub">GH</a>
+          <a href="https://www.linkedin.com/in/gaitanjulian-gamedeveloper/" target="_blank" aria-label="LinkedIn">in</a>
+          <a href="mailto:juliangaitan_h@hotmail.com" aria-label="Email">@</a>
         </div>
       </div>
 
-      <!-- Sidebar -->
-      <div id="sidebar">
-        <div class="inner">
-          <!-- Menu -->
-          <nav id="menu">
-            <header class="major">
-              <h2>Menu</h2>
-            </header>
-            <ul>
-              <li><a href="index.html">Homepage</a></li>
-              <li>
-                <a
-                  onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })"
-                  >Projects</a
-                >
-              </li>
-              <li>
-                <a
-                  onclick="document.getElementById('about').scrollIntoView({ behavior: 'smooth' })"
-                  >About</a
-                >
-              </li>
-            </ul>
-          </nav>
+      <section class="hero">
+        <div>
+          <div class="hero-subtitle">Backend &amp; Fullstack Developer · Systems &amp; Game Programming</div>
+          <h1>Hi, I'm Julian Gaitan.</h1>
+          <p>
+            I build reliable, production-ready software and backend systems with modern tools,
+            while exploring game development as a creative playground to sharpen how I think about
+            interaction, architecture, and user experience. Here you'll find the projects that best
+            represent how I solve problems in real products — and how I bring that same rigor into
+            interactive experiences.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">View software projects</a>
+            <a class="btn btn-ghost" href="#about">About &amp; background</a>
+            <a class="btn btn-ghost" href="#projects" onclick="showGame()" style="opacity:0.85;">Show game dev work</a>
+          </div>
+        </div>
+        <div class="hero-photo-wrap">
+          <img src="images/julianGaitan.jpg" alt="Portrait of Julian Gaitan" class="hero-photo" />
+        </div>
+      </section>
+    </header>
 
-          <!-- Section -->
-          <section>
-            <header class="major">
-              <h2>Get in touch</h2>
-            </header>
-            <p>
-              I'd love to hear from you! Feel free to shoot me an email or
-              connect with me on
-              <a
-                href="https://www.linkedin.com/in/gaitanjulian-gamedeveloper/"
-                target="_blank"
-                >LinkedIn</a
-              >.
-            </p>
-            <ul class="contact">
-              <li class="icon solid fa-envelope">
-                <a href="#">juliangaitan_h@hotmail.com</a>
-              </li>
-              <li class="icon solid fa-home">Bucaramanga, Colombia</li>
-            </ul>
-          </section>
+    <!-- Optional WebGL experience -->
+    <section class="webgl-section">
+      <div class="webgl-header">
+        <div>
+          <div class="webgl-title">Interactive Portfolio Experience (WebGL)</div>
+          <p class="webgl-text">
+            Explore a playable version of my portfolio built with Unity. Walk around, interact with elements,
+            and discover selected projects in an immersive way. It's optional and may take a moment to load —
+            if you're a recruiter, you can safely skip this and head straight to the projects list below.
+          </p>
+        </div>
+        <button id="toggleWebGL" class="webgl-toggle">Show experience</button>
+      </div>
+      <div id="webglWrapper" class="webgl-frame-wrapper">
+        <!-- Coloca tu build WebGL en /webgl/index.html o ajusta esta ruta -->
+        <iframe src="webgl/index.html" loading="lazy" class="webgl-frame" title="Interactive WebGL Portfolio"></iframe>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <div class="section-header">
+        <div>
+          <h2>Highlighted projects</h2>
+          <div class="section-subtitle">
+            Software development shown by default. Switch to game development to see my interactive work.
+          </div>
+        </div>
+        <div class="toggle-group">
+          <button class="toggle-btn active" data-target="dev">Software Dev</button>
+          <button class="toggle-btn" data-target="game">Game Dev</button>
         </div>
       </div>
-    </div>
 
-    <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
-  </body>
+      <!-- Software Dev Projects -->
+      <div id="devProjects" class="projects-grid">
+        <article class="card">
+          <img src="images/interactivePortfolio.png" alt="Orders microservice" class="card-thumb" />
+          <div class="card-title">Orders Microservice · E-commerce backend</div>
+          <div class="card-role">Backend / Microservices / Production-ready design</div>
+          <p class="card-desc">
+            Order management service with realistic status flow, email notifications, and simulated asynchronous
+            payment gateway. Designed for API gateway integration and cloud deployment.
+          </p>
+          <div class="skills">
+            <span class="skill-pill">Node.js</span>
+            <span class="skill-pill">Express</span>
+            <span class="skill-pill">PostgreSQL</span>
+            <span class="skill-pill">REST API</span>
+            <span class="skill-pill">Microservices</span>
+            <span class="skill-pill">Clean Architecture</span>
+          </div>
+          <div class="card-links">
+            <a href="https://github.com/GaitanJulian" target="_blank">Source</a>
+            <!-- Reemplaza con el repo específico -->
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="images/nanoescape.png" alt="Library system" class="card-thumb" />
+          <div class="card-title">Library Management System</div>
+          <div class="card-role">Fullstack · Academic project with real requirements</div>
+          <p class="card-desc">
+            System for catalog search, availability checks, loans, returns, fines, reservations, and admin reporting.
+            Built as a structured engineering project with clear requirements and roles.
+          </p>
+          <div class="skills">
+            <span class="skill-pill">Node.js</span>
+            <span class="skill-pill">React</span>
+            <span class="skill-pill">SQL</span>
+            <span class="skill-pill">Domain-Driven thinking</span>
+          </div>
+          <div class="card-links">
+            <a href="https://github.com/GaitanJulian" target="_blank">Source</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="images/lifebycandleligiht.png" alt="XR simulation" class="card-thumb" />
+          <div class="card-title">Mixed Reality Medical Training Prototype</div>
+          <div class="card-role">Unity · Backend APIs · Data tracking</div>
+          <p class="card-desc">
+            Prototype of an MR training tool integrating guidance, metrics capture, and server communication,
+            showcasing my ability to connect XR clients with robust backend services.
+          </p>
+          <div class="skills">
+            <span class="skill-pill">Unity</span>
+            <span class="skill-pill">C#</span>
+            <span class="skill-pill">REST API</span>
+            <span class="skill-pill">Data tracking</span>
+          </div>
+          <div class="card-links">
+            <a href="https://github.com/GaitanJulian" target="_blank">Source</a>
+          </div>
+        </article>
+      </div>
+
+      <!-- Game Dev Projects -->
+      <div id="gameProjects" class="projects-grid" style="display:none;">
+        <article class="card">
+          <img src="images/interactivePortfolio.png" alt="Interactive Portfolio" class="card-thumb" />
+          <div class="card-title">Interactive Portfolio [Work in Progress]</div>
+          <div class="card-role">Unity · WebGL · Playable personal space</div>
+          <p class="card-desc">
+            A living, interactive space where visitors can explore my work as a 3D character, discover projects,
+            and experience my approach to technical implementation and playful design.
+          </p>
+          <div class="skills">
+            <span class="skill-pill">Unity</span>
+            <span class="skill-pill">C#</span>
+            <span class="skill-pill">WebGL</span>
+            <span class="skill-pill">Cinemachine</span>
+            <span class="skill-pill">UX for games</span>
+          </div>
+          <div class="card-links">
+            <a href="https://gaitanjulian.itch.io" target="_blank">Play on Itch.io</a>
+            <a href="https://github.com/GaitanJulian/interactivePortfolio" target="_blank">Source</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="images/bootcampBrawlers.png" alt="Bootcamp Brawlers" class="card-thumb" />
+          <div class="card-title">Bootcamp Brawlers</div>
+          <div class="card-role">Multiplayer party game prototype</div>
+          <p class="card-desc">
+            Fast-paced arena brawler for up to 4 players with environmental hazards, pickups and competitive gameplay.
+            Focus on feel, readability and polished moment-to-moment action.
+          </p>
+          <div class="skills">
+            <span class="skill-pill">Unity</span>
+            <span class="skill-pill">C#</span>
+            <span class="skill-pill">Multiplayer (local)</span>
+            <span class="skill-pill">Game feel</span>
+          </div>
+          <div class="card-links">
+            <a href="https://joulesp.itch.io/boot-camp-brawlers" target="_blank">Play on Itch.io</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="images/lifebycandleligiht.png" alt="Life by Candlelight" class="card-thumb" />
+          <div class="card-title">Life by Candlelight</div>
+          <div class="card-role">Atmospheric first-person horror</div>
+          <p class="card-desc">
+            Narrative-driven horror experience built around light management, space tension and environmental storytelling.
+          </p>
+          <div class="skills">
+            <span class="skill-pill">Unity</span>
+            <span class="skill-pill">Lighting</span>
+            <span class="skill-pill">Level design</span>
+          </div>
+          <div class="card-links">
+            <a href="https://damamapi.itch.io/life-by-candlelight" target="_blank">Play on Itch.io</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="images/xenofurious.png" alt="Xenofurious Sabotage" class="card-thumb" />
+          <div class="card-title">Xenofurious Sabotage</div>
+          <div class="card-role">Arcade shooter</div>
+          <p class="card-desc">
+            Pixel-art shooter focused on responsive controls and enemy patterns tuned for satisfying challenge.
+          </p>
+          <div class="skills">
+            <span class="skill-pill">Unity</span>
+            <span class="skill-pill">C#</span>
+            <span class="skill-pill">2D game design</span>
+          </div>
+          <div class="card-links">
+            <a href="https://gaitanjulian.itch.io/xenofurious-sabotage" target="_blank">Play on Itch.io</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="images/nanoescape.png" alt="NanoEscape" class="card-thumb" />
+          <div class="card-title">NanoEscape</div>
+          <div class="card-role">Puzzle-platformer</div>
+          <p class="card-desc">
+            Lab-themed puzzle platformer emphasizing mechanics clarity and level pacing.
+          </p>
+          <div class="skills">
+            <span class="skill-pill">Unity</span>
+            <span class="skill-pill">C#</span>
+            <span class="skill-pill">Level design</span>
+          </div>
+          <div class="card-links">
+            <a href="https://gaitanjulian.itch.io/nanoescape" target="_blank">Play on Itch.io</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="images/runes.png" alt="Runes Quest" class="card-thumb" />
+          <div class="card-title">Runes Quest</div>
+          <div class="card-role">Fantasy card / strategy prototype</div>
+          <p class="card-desc">
+            Prototype mixing card mechanics and lane-based strategy to explore combat systems and UI feedback.
+          </p>
+          <div class="skills">
+            <span class="skill-pill">Unity</span>
+            <span class="skill-pill">C#</span>
+            <span class="skill-pill">UI</span>
+          </div>
+          <div class="card-links">
+            <a href="https://gaitanjulian.itch.io/runes-quest" target="_blank">Play on Itch.io</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="images/dream.png" alt="Dimensional Dream" class="card-thumb" />
+          <div class="card-title">Dimensional Dream</div>
+          <div class="card-role">Short jam game</div>
+          <p class="card-desc">
+            Puzzle-platformer made for a game jam, highlighting rapid prototyping, scope control and collaboration.
+          </p>
+          <div class="skills">
+            <span class="skill-pill">Unity</span>
+            <span class="skill-pill">C#</span>
+            <span class="skill-pill">Game jam</span>
+          </div>
+          <div class="card-links">
+            <a href="https://gaitanjulian.itch.io/dimensional-dream" target="_blank">Play on Itch.io</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="about">
+      <img src="images/profile.png" alt="Julian portrait" />
+      <div>
+        <h3>About me</h3>
+        <p>
+          I'm a software developer and computer science student from Colombia, with hands-on experience
+          building services, tools, and interactive experiences. My main focus is backend and fullstack
+          development — designing APIs, integrating services, and keeping systems maintainable.
+        </p>
+        <p>
+          In parallel, I build games and interactive experiments with Unity. That work makes me better
+          at thinking about systems, performance, player (and user) experience, and polish.
+          When you hire me, you get a solid developer who also understands how to craft engaging,
+          responsive experiences.
+        </p>
+        <div class="about-actions">
+          <a class="btn btn-primary" href="mailto:juliangaitan_h@hotmail.com">Contact me</a>
+          <a class="btn btn-ghost" href="https://github.com/GaitanJulian" target="_blank">GitHub</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/gaitanjulian-gamedeveloper/" target="_blank">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Built for GitHub Pages using only static HTML, CSS, and vanilla JS.
+      Software roles first &mdash; game dev as a strong plus.
+    </footer>
+  </main>
+
+  <script>
+    // WebGL toggle
+    const toggleWebGLBtn = document.getElementById('toggleWebGL');
+    const webglWrapper = document.getElementById('webglWrapper');
+    let webglVisible = false;
+    toggleWebGLBtn.addEventListener('click', function () {
+      webglVisible = !webglVisible;
+      webglWrapper.style.display = webglVisible ? 'block' : 'none';
+      toggleWebGLBtn.textContent = webglVisible ? 'Hide experience' : 'Show experience';
+    });
+
+    // Project toggles
+    const toggleButtons = document.querySelectorAll('.toggle-btn');
+    const devSection = document.getElementById('devProjects');
+    const gameSection = document.getElementById('gameProjects');
+
+    function setMode(mode) {
+      if (mode === 'dev') {
+        devSection.style.display = 'grid';
+        gameSection.style.display = 'none';
+      } else {
+        devSection.style.display = 'none';
+        gameSection.style.display = 'grid';
+      }
+    }
+
+    toggleButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        toggleButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const target = btn.getAttribute('data-target');
+        setMode(target);
+      });
+    });
+
+    // Hero button to jump directly to Game Dev view
+    function showGame() {
+      setMode('game');
+      toggleButtons.forEach(b => {
+        b.classList.toggle('active', b.getAttribute('data-target') === 'game');
+      });
+      const projects = document.getElementById('projects');
+      if (projects) {
+        projects.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+    window.showGame = showGame;
+  </script>
+</body>
 </html>
