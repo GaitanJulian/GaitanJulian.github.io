@@ -438,6 +438,44 @@
         height: 320px;
       }
     }
+
+    /* Overlay for screenshots */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.overlay-content {
+  max-width: 90%;
+  max-height: 90%;
+  overflow-y: auto;
+  border-radius: 14px;
+  background: #0b1020;
+  padding: 14px;
+  box-shadow: 0 0 40px rgba(0,0,0,0.6);
+  position: relative;
+  text-align: center;
+}
+
+.overlay-content img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.close {
+  position: absolute;
+  top: 18px;
+  right: 24px;
+  font-size: 28px;
+  cursor: pointer;
+  color: #f97316;
+}
   </style>
 </head>
 <body>
@@ -514,63 +552,68 @@
 
       <!-- Software Dev Projects -->
       <div id="devProjects" class="projects-grid">
+        <!-- StatusBoard -->
         <article class="card">
-          <img src="images/interactivePortfolio.png" alt="Orders microservice" class="card-thumb" />
-          <div class="card-title">Orders Microservice · E-commerce backend</div>
-          <div class="card-role">Backend / Microservices / Production-ready design</div>
+          <img src="images/statusboard.png" alt="StatusBoard backend" class="card-thumb" />
+          <div class="card-title">StatusBoard – Service Status & Dashboard System</div>
+          <div class="card-role">Backend · Node.js · Microservices Integration</div>
           <p class="card-desc">
-            Order management service with realistic status flow, email notifications, and simulated asynchronous
-            payment gateway. Designed for API gateway integration and cloud deployment.
+            Fullstack project designed to monitor, visualize, and manage system statuses in real time.
+            Implements asynchronous updates, internal API communication, and integration with mail and gateway services.
           </p>
           <div class="skills">
             <span class="skill-pill">Node.js</span>
             <span class="skill-pill">Express</span>
             <span class="skill-pill">PostgreSQL</span>
-            <span class="skill-pill">REST API</span>
             <span class="skill-pill">Microservices</span>
-            <span class="skill-pill">Clean Architecture</span>
+            <span class="skill-pill">Kong</span>
+            <span class="skill-pill">Mailtrap</span>
           </div>
           <div class="card-links">
-            <a href="https://github.com/GaitanJulian" target="_blank">Source</a>
-            <!-- Reemplaza con el repo específico -->
+            <a href="https://github.com/GaitanJulian/StatusBoard" target="_blank">Repository</a>
           </div>
         </article>
-
+        <!-- GameInsider -->
         <article class="card">
-          <img src="images/nanoescape.png" alt="Library system" class="card-thumb" />
-          <div class="card-title">Library Management System</div>
-          <div class="card-role">Fullstack · Academic project with real requirements</div>
+          <img src="images/gameinsider.png" alt="GameInsider Django backend" class="card-thumb" />
+          <div class="card-title">GameInsider – Video Game News & Analytics Platform</div>
+          <div class="card-role">Backend · Django · REST API</div>
           <p class="card-desc">
-            System for catalog search, availability checks, loans, returns, fines, reservations, and admin reporting.
-            Built as a structured engineering project with clear requirements and roles.
+            Web backend for aggregating and managing game-related content. Features user authentication,
+            database-driven content, and REST endpoints for integration with external frontends or dashboards.
           </p>
           <div class="skills">
-            <span class="skill-pill">Node.js</span>
-            <span class="skill-pill">React</span>
-            <span class="skill-pill">SQL</span>
-            <span class="skill-pill">Domain-Driven thinking</span>
+            <span class="skill-pill">Python</span>
+            <span class="skill-pill">Django</span>
+            <span class="skill-pill">REST API</span>
+            <span class="skill-pill">PostgreSQL</span>
+            <span class="skill-pill">Authentication</span>
           </div>
           <div class="card-links">
-            <a href="https://github.com/GaitanJulian" target="_blank">Source</a>
+            <a href="https://github.com/GaitanJulian/GameInsider" target="_blank">Repository</a>
+            <a href="#" onclick="openOverlay('gameinsider')">Screenshots</a>
           </div>
         </article>
 
+        <!-- Hemorragia Postparto XR -->
         <article class="card">
-          <img src="images/lifebycandleligiht.png" alt="XR simulation" class="card-thumb" />
-          <div class="card-title">Mixed Reality Medical Training Prototype</div>
-          <div class="card-role">Unity · Backend APIs · Data tracking</div>
+          <img src="images/xr_thumbnail.png" alt="Postpartum Hemorrhage Simulation" class="card-thumb" />
+          <div class="card-title">Postpartum Hemorrhage XR Simulation</div>
+          <div class="card-role">Unity · Mixed Reality · Research Project</div>
           <p class="card-desc">
-            Prototype of an MR training tool integrating guidance, metrics capture, and server communication,
-            showcasing my ability to connect XR clients with robust backend services.
+            Mixed reality training simulation developed in Unity to guide medical students through
+            postpartum hemorrhage procedures. Features spatial anchors, data capture, and performance analytics.
           </p>
           <div class="skills">
             <span class="skill-pill">Unity</span>
             <span class="skill-pill">C#</span>
-            <span class="skill-pill">REST API</span>
-            <span class="skill-pill">Data tracking</span>
+            <span class="skill-pill">XR Interaction Toolkit</span>
+            <span class="skill-pill">Data Analytics</span>
+            <span class="skill-pill">Spatial Anchors</span>
           </div>
           <div class="card-links">
-            <a href="https://github.com/GaitanJulian" target="_blank">Source</a>
+            <a href="#" onclick="openOverlay('xr')">View screenshots</a>
+            <a href="mailto:juliangaitan_h@hotmail.com">Request Access</a>
           </div>
         </article>
       </div>
@@ -732,6 +775,24 @@
       Built for GitHub Pages using only static HTML, CSS, and vanilla JS.
       Software roles first &mdash; game dev as a strong plus.
     </footer>
+    <!-- Overlay for XR project -->
+    <div id="overlay-xr" class="overlay">
+      <div class="overlay-content">
+        <span class="close" onclick="closeOverlay('xr')">&times;</span>
+        <img src="images/xr1.png" alt="XR simulation view 1">
+        <img src="images/xr2.png" alt="XR simulation view 2">
+        <img src="images/xr3.png" alt="XR simulation view 3">
+      </div>
+    </div>
+
+    <!-- Overlay for GameInsider screenshots -->
+    <div id="overlay-gameinsider" class="overlay">
+      <div class="overlay-content">
+        <span class="close" onclick="closeOverlay('gameinsider')">&times;</span>
+        <img src="images/gi1.png" alt="GameInsider interface 1">
+        <img src="images/gi2.png" alt="GameInsider interface 2">
+      </div>
+    </div>
   </main>
 
   <script>
@@ -781,6 +842,15 @@
       }
     }
     window.showGame = showGame;
+
+    function openOverlay(id) {
+      document.getElementById(`overlay-${id}`).style.display = 'flex';
+    }
+    function closeOverlay(id) {
+      document.getElementById(`overlay-${id}`).style.display = 'none';
+    }
+
   </script>
+
 </body>
 </html>
