@@ -222,15 +222,16 @@
       color: #020817;
     }
     .webgl-frame-wrapper {
-      margin-top: 12px;
+      margin-top: 10px;
       display: none;
+      border-radius: 18px;
+      overflow: hidden;           /* Important: esconde cualquier exceso del iframe */
     }
     .webgl-frame {
       width: 100%;
-      height: 420px;
+      height: clamp(380px, 65vh, 720px);  /* mínimo 380px, normalmente ~65% del alto de pantalla, máx 720px */
       border: none;
-      border-radius: 18px;
-      background: #020817;
+      display: block;
     }
 
     /* Projects toggle */
@@ -439,7 +440,7 @@
       }
     }
 
-    /* Overlay for screenshots */
+/* Overlay for screenshots */
 .overlay {
   position: fixed;
   inset: 0;
@@ -450,31 +451,35 @@
   z-index: 1000;
 }
 
+/* Caja de contenido con scroll interno controlado */
 .overlay-content {
+  position: relative;
   max-width: 90%;
-  max-height: 90%;
-  overflow-y: auto;
+  max-height: 90vh;         /* limita altura al viewport */
+  overflow-y: auto;         /* scroll interno si hace falta */
   border-radius: 14px;
   background: #0b1020;
-  padding: 14px;
+  padding: 14px 14px 10px 14px;
   box-shadow: 0 0 40px rgba(0,0,0,0.6);
-  position: relative;
-  text-align: center;
 }
 
+/* Imágenes dentro del overlay */
 .overlay-content img {
   max-width: 100%;
   border-radius: 10px;
   margin-bottom: 10px;
 }
 
+/* Botón cerrar: sticky dentro del scroll, siempre a la vista arriba */
 .close {
-  position: absolute;
-  top: 18px;
-  right: 24px;
+  position: sticky;
+  top: 0;
+  float: right;
+  margin-bottom: 6px;
   font-size: 28px;
   cursor: pointer;
   color: #f97316;
+  z-index: 1001;
 }
   </style>
 </head>
@@ -520,7 +525,7 @@
     <section class="webgl-section">
       <div class="webgl-header">
         <div>
-          <div class="webgl-title">Interactive Portfolio Experience (WebGL) - WIP</div>
+          <div class="webgl-title">Interactive Portfolio Experience (WebGL) - Work In Progress</div>
           <p class="webgl-text">
             Explore a playable version of my portfolio built with Unity. Walk around, interact with elements,
             and discover selected projects in an immersive way. It's optional and may take a moment to load —
@@ -558,18 +563,21 @@
           <div class="card-title">StatusBoard – Service Status & Dashboard System</div>
           <div class="card-role">Backend · Node.js · Microservices Integration</div>
           <p class="card-desc">
-            Fullstack project designed to monitor, visualize, and manage system statuses in real time.
-            Implements asynchronous updates, internal API communication, and integration with mail and gateway services.
+            Fullstack project designed to monitor and manage service incidents.
+            Built with Node.js, TypeScript, Express, and Prisma ORM for real persistence.
+            Implements centralized error handling, API key authentication, and cloud deployment via Render and Vercel.
           </p>
           <div class="skills">
             <span class="skill-pill">Node.js</span>
+            <span class="skill-pill">TypeScript</span>
             <span class="skill-pill">Express</span>
-            <span class="skill-pill">PostgreSQL</span>
-            <span class="skill-pill">Microservices</span>
-            <span class="skill-pill">Kong</span>
-            <span class="skill-pill">Mailtrap</span>
+            <span class="skill-pill">Prisma ORM</span>
+            <span class="skill-pill">SQLite</span>
+            <span class="skill-pill">REST API</span>
           </div>
           <div class="card-links">
+            <a href="https://status-board-dxljzosd7-julians-projects-389143e1.vercel.app" target="_blank">Live demo</a>
+            <a href="https://dashboard.render.com/web/srv-d49bj2ripnbc73dudj2g" target="_blank">API endpoint</a>
             <a href="https://github.com/GaitanJulian/StatusBoard" target="_blank">Repository</a>
           </div>
         </article>
@@ -607,7 +615,7 @@
           <div class="skills">
             <span class="skill-pill">Unity</span>
             <span class="skill-pill">C#</span>
-            <span class="skill-pill">XR Interaction Toolkit</span>
+            <span class="skill-pill">Voice Commands</span>
             <span class="skill-pill">Data Analytics</span>
             <span class="skill-pill">Spatial Anchors</span>
           </div>
@@ -779,7 +787,7 @@
     <div id="overlay-xr" class="overlay">
       <div class="overlay-content">
         <span class="close" onclick="closeOverlay('xr')">&times;</span>
-        <img src="images/xr1.png" alt="XR simulation view 1">
+        <img src="images/xr1.jpeg" alt="XR simulation view 1">
         <img src="images/xr2.png" alt="XR simulation view 2">
         <img src="images/xr3.png" alt="XR simulation view 3">
       </div>
@@ -844,10 +852,23 @@
     window.showGame = showGame;
 
     function openOverlay(id) {
-      document.getElementById(`overlay-${id}`).style.display = 'flex';
+      const overlay = document.getElementById(`overlay-${id}`);
+      if (!overlay) return;
+      overlay.style.display = 'flex';
+
+      // permite cerrar clickeando el fondo oscuro
+      overlay.onclick = (e) => {
+        if (e.target === overlay) {
+          closeOverlay(id);
+        }
+      };
     }
+
     function closeOverlay(id) {
-      document.getElementById(`overlay-${id}`).style.display = 'none';
+      const overlay = document.getElementById(`overlay-${id}`);
+      if (!overlay) return;
+      overlay.style.display = 'none';
+      overlay.onclick = null;
     }
 
   </script>
